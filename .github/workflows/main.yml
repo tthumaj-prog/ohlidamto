@@ -1,4 +1,4 @@
-name: Ohlidamto – plánovač
+name: Ohlidamto – čtení Bazoše (TEST)
 
 on:
   schedule:
@@ -6,9 +6,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  notify:
+  read-bazos:
     runs-on: ubuntu-latest
     steps:
-      - name: Ohlidamto – test notifikace
+      - name: Stáhnout stránku Bazoš – PC
         run: |
-          echo "Ohlidamto běží. Test notifikace."
+          curl -L "https://pc.bazos.cz/" -o page.html
+
+      - name: Najít odkazy na inzeráty
+        run: |
+          grep -o 'href="/inzerat/[^"]*"' page.html | sort | uniq > odkazy.txt
+          echo "Celkem nalezeno inzerátů:"
+          wc -l odkazy.txt
