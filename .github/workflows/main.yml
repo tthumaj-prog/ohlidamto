@@ -1,4 +1,4 @@
-name: Ohlidamto – scheduler
+name: Ohlidamto – plánovač
 
 on:
   schedule:
@@ -9,5 +9,9 @@ jobs:
   test-run:
     runs-on: ubuntu-latest
     steps:
-      - name: Test run
+      - name: Test – zpráva do logu
         run: echo "Ohlidamto scheduler is running"
+
+      - name: Test – e-mail (zatím jen simulace)
+        run: |
+          echo "TEST: Tady bude odeslání e-mailu."
