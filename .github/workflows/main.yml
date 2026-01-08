@@ -6,12 +6,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-run:
+  notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Test – zpráva do logu
-        run: echo "Ohlidamto scheduler is running"
-
-      - name: Test – e-mail (zatím jen simulace)
+      - name: Ohlidamto – test notifikace
         run: |
-          echo "TEST: Tady bude odeslání e-mailu."
+          echo "Ohlidamto běží. Test notifikace."
