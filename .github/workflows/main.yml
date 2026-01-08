@@ -1,0 +1,13 @@
+name: Ohlidamto – scheduler
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  test-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test run
+        run: echo "Ohlidamto scheduler is running"
