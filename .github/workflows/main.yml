@@ -15,6 +15,14 @@ jobs:
       - name: Vypsat počet a ukázku odkazů
         run: |
           grep -o 'href="/inzerat/[^"]*"' page.html | sed 's/href=//' | tr -d '"' | sort -u > odkazy.txt
+           - name: Porovnat s minulým stavem
+        run: |
+          if [ -f minuly_stav.txt ]; then
+            echo "Porovnávám s minulým stavem"
+            diff minuly_stav.txt odkazy.txt || true
+          else
+            echo "Minulý stav neexistuje (první běh)"
+          fi
           echo "POČET NALEZENÝCH INZERÁTŮ:"
           wc -l odkazy.txt
           echo "UKÁZKA (prvních 5):"
