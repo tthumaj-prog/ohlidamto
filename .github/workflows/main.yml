@@ -1,20 +1,21 @@
 name: Ohlidamto – čtení Bazoše (TEST)
 
 on:
-  schedule:
-    - cron: '*/15 * * * *'
   workflow_dispatch:
 
 jobs:
   read-bazos:
     runs-on: ubuntu-latest
     steps:
-      - name: Stáhnout stránku Bazoš – PC
+      - name: Stáhnout stránku PC.bazos.cz
         run: |
-          curl -L "https://pc.bazos.cz/" -o page.html
+          curl -sL "https://pc.bazos.cz/" -o page.html
+          echo "Staženo OK"
 
-      - name: Najít odkazy na inzeráty
+      - name: Vypsat počet a ukázku odkazů
         run: |
-          grep -o 'href="/inzerat/[^"]*"' page.html | sort | uniq > odkazy.txt
-          echo "Celkem nalezeno inzerátů:"
+          grep -o 'href="/inzerat/[^"]*"' page.html | sed 's/href=//' | tr -d '"' | sort -u > odkazy.txt
+          echo "POČET NALEZENÝCH INZERÁTŮ:"
           wc -l odkazy.txt
+          echo "UKÁZKA (prvních 5):"
+          head -n 5 odkazy.txt
