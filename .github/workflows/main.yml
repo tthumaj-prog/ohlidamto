@@ -23,6 +23,14 @@ jobs:
           else
             echo "Minulý stav neexistuje (první běh)"
           fi
+           - name: Zjistit zda existují nové inzeráty
+      run: |
+        if [ -f minuly_stav.txt ]; then
+          NOVINKY=$(diff minuly_stav.txt odkazy.txt | grep "^>" | wc -l)
+          echo "NOVÉ INZERÁTY: $NOVINKY"
+        else
+          echo "PRVNÍ BĚH – vše je nové"
+        fi
           echo "POČET NALEZENÝCH INZERÁTŮ:"
           wc -l odkazy.txt
           echo "UKÁZKA (prvních 5):"
