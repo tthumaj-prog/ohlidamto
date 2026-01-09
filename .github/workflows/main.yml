@@ -19,3 +19,12 @@ jobs:
           wc -l odkazy.txt
           echo "UKÁZKA (prvních 5):"
           head -n 5 odkazy.txt
+- name: Uložit aktuální stav
+        run: |
+          cp odkazy.txt minuly_stav.txt
+
+      - name: Uložit stav jako artefakt
+        uses: actions/upload-artifact@v4
+        with:
+          name: bazos-stav
+          path: minuly_stav.txt
