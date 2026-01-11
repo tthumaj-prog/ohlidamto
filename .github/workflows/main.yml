@@ -1,49 +1,11 @@
-# dummy v2
-# dummy
-# test commit – technický
-name: Ohlidamto – čtení Bazoše (TEST)
+name: Test workflow
 
 on:
   workflow_dispatch:
 
 jobs:
-  read-bazos:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Stáhnout stránku PC.bazos.cz
-        run: |
-          curl -sL "https://pc.bazos.cz/" -o page.html
-          echo "Staženo OK"
-
-      - name: Vypsat počet a ukázku odkazů
-        run: |
-          grep -o 'href="/inzerat/[^"]*"' page.html | sed 's/href=//' | tr -d '"' | sort -u > odkazy.txt
-           - name: Porovnat s minulým stavem
-        run: |
-          if [ -f minuly_stav.txt ]; then
-            echo "Porovnávám s minulým stavem"
-            diff minuly_stav.txt odkazy.txt || true
-          else
-            echo "Minulý stav neexistuje (první běh)"
-          fi
-           - name: Zjistit zda existují nové inzeráty
-      run: |
-        if [ -f minuly_stav.txt ]; then
-          NOVINKY=$(diff minuly_stav.txt odkazy.txt | grep "^>" | wc -l)
-          echo "NOVÉ INZERÁTY: $NOVINKY"
-        else
-          echo "PRVNÍ BĚH – vše je nové"
-        fi
-          echo "POČET NALEZENÝCH INZERÁTŮ:"
-          wc -l odkazy.txt
-          echo "UKÁZKA (prvních 5):"
-          head -n 5 odkazy.txt
-- name: Uložit aktuální stav
-        run: |
-          cp odkazy.txt minuly_stav.txt
-
-      - name: Uložit stav jako artefakt
-        uses: actions/upload-artifact@v4
-        with:
-          name: bazos-stav
-          path: minuly_stav.txt
+      - name: Testovací krok
+        run: echo "Workflow funguje"
