@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ohlidamto.cz – hlídá nabídky za tebe</title>
+  <meta name="description" content="ohlidamto.cz – hlídá nabídky za tebe. Když se objeví nová nabídka, pošlu ti e-mail." />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <header class="topbar">
+      <div class="brand">ohlidamto.cz</div>
+      <nav class="top-actions">
+        <a class="small-link" href="./jak-to-funguje.html" target="_blank" rel="noopener">Jak to funguje</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>ohlidamto.cz – hlídá nabídky za tebe</h1>
+      <p>Když se objeví nová nabídka, pošlu ti e-mail.</p>
+    </section>
+
+    <main class="card">
+      <form class="form" action="./vysledky.html" method="GET" target="_blank">
+        <div class="field">
+          <label for="kategorie">Kategorie</label>
+          <select id="kategorie" name="kategorie" required>
+            <option value="" selected disabled>Vyber kategorii…</option>
+            <option>Auto</option>
+            <option>Bydlení</option>
+            <option>Elektronika</option>
+            <option>Nářadí</option>
+            <option>Oblečení</option>
+            <option>Ostatní</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="q">Co hledáš?</label>
+          <input id="q" name="q" type="text" placeholder="např. auto, byt, pila…" required />
+        </div>
+
+        <div class="grid2">
+          <div class="field">
+            <label for="lokalita">Lokalita</label>
+            <input id="lokalita" name="lokalita" type="text" placeholder="např. Praha, Brno…" />
+          </div>
+
+          <div class="field">
+            <label for="km">Okolí (km)</label>
+            <input id="km" name="km" type="number" inputmode="numeric" placeholder="např. 50" min="0" max="500" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" placeholder="tvuj@email.cz" required />
+        </div>
+
+        <div class="radios" aria-label="Stav nabídky">
+          <label><input type="radio" name="stav" value="nove"> Nové</label>
+          <label><input type="radio" name="stav" value="bazar"> Bazar</label>
+          <label><input type="radio" name="stav" value="oboji" checked> Obojí</label>
+        </div>
+
+        <div class="actions">
+          <button class="btn" type="submit">HLEDAT</button>
+        </div>
+
+        <div class="note">
+          Máme pro tebe nové nabídky → <a href="./vysledky.html" target="_blank" rel="noopener">Zobrazit výsledky</a>
+        </div>
+      </form>
+    </main>
+
+    <footer class="footer">
+      ohlidamto.cz · <a href="./kontakt.html" target="_blank" rel="noopener">Kontakt</a> ·
+      <a href="./ochrana-soukromi.html" target="_blank" rel="noopener">Ochrana soukromí</a>
+    </footer>
+  </div>
+</body>
+</html>
